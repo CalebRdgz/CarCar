@@ -31,16 +31,19 @@ class TechnicianEncoder(ModelEncoder):
 class ServiceAppointmentEncoder(ModelEncoder):
     model = ServiceAppointment
     properties = [
-    "vin",
+    "id",
+    "automobile_id",
     "customer_name",
     "reason",
     "date",
     "time",
-    "active"
+    "active",
+    "technician"
     ]
 
     encoders={
     "technician": TechnicianEncoder(),
+    "automobile_vin": AutomobilesVOEncoder()
     }
 
 
@@ -55,6 +58,13 @@ def api_service_list(request):
         )
     else: #POST
         content = json.loads(request.body)
+        technician_id = content["technician_id"]
+        tech = Technician.objects.get(id=technician_id)
+        content["technician"] = tech
+        auto_id = content["automobile_id"]
+        auto = AutomobileVO.objects.get(id = auto_id)
+        content["automobile"] = auto
+        print("content print: ", content)
         appt = ServiceAppointment.objects.create(**content)
         return JsonResponse(
             appt,
