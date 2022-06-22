@@ -19,28 +19,29 @@ class AutomobilesVOEncoder(ModelEncoder):
         "vin"
     ]
 
+
+class TechnicianEncoder(ModelEncoder):
+    model = Technician
+    properties = [
+        'id',
+        'technician_name',
+        'employee_number',
+    ]
+
 class ServiceAppointmentEncoder(ModelEncoder):
     model = ServiceAppointment
     properties = [
+    "vin",
     "customer_name",
     "reason",
-    "technician",
     "date",
     "time",
     "active"
     ]
 
     encoders={
-    "automobile": AutomobileVO(),
+    "technician": TechnicianEncoder(),
     }
-
-
-class TechnicainEncoder(ModelEncoder):
-    model = Technician
-    properties = [
-        'technician_name',
-        'employee_name',
-    ]
 
 
 @require_http_methods(["GET", "POST"])
@@ -112,4 +113,22 @@ def api_service_details(request, pk):
             )
         except ServiceAppointment.DoesNotExist:
             return JsonResponse({"message": "BOI! You deleted dat!"})
-    
+
+
+@require_http_methods(["GET", "POST"])
+def api_tech_list(request):
+    if request.method == "POST":
+        content = json.loads(request.body)
+        tech = Technician.objects.create(**content)
+        return JsonResponse(
+            tech,
+            encoder=TechnicianEncoder,
+            safe = False
+        )
+    else: #GET
+        techs = Technician.objects.all()
+        return JsonResponse(
+            techs,
+            encoder=TechnicianEncoder,
+            safe = False
+        )

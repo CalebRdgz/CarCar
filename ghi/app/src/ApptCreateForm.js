@@ -89,6 +89,7 @@ class ApptCreateForm extends React.Component {
         }
         }
 
+
         // async componentDidMount() {
         // const url = 'http://localhost:8100/api/locations';
         // const response = await fetch(url);
@@ -102,11 +103,11 @@ class ApptCreateForm extends React.Component {
             //     option.innerHTML = loc.closet_name
             //     selectTag.appendChild(option)
             // }
-        }
-        }
+    
+
     
     
-      render() {
+      render(){
         return (
           <div className="row">
             <div className="offset-3 col-6">
@@ -119,7 +120,7 @@ class ApptCreateForm extends React.Component {
                   </div>
                   <div className="form-floating mb-3">
                     <input onChange={this.handleCustomerNameChange} placeholder="Customer Name" required type="text" name="customer_name" id="customer_name" className="form-control" />
-                    <label htmlFor="customer_name">CustomerName</label>
+                    <label htmlFor="customer_name">Customer Name</label>
                   </div>
                   <div className="form-floating mb-3">
                     <input onChange={this.handleReasonChange} placeholder="Reason" required type="text" name="reason" id="reason" className="form-control" />
@@ -136,11 +137,11 @@ class ApptCreateForm extends React.Component {
                   <div className="mb-3">
                     <select onChange={this.handleActiveChange} required name="technician" id="technician" className="form-select">
                       <option value="" id="closet_technician" >Choose Technician</option>
-                      {this.state.technician.map(tech=> {
+                      {/* {this.state.technician_name.map(tech=> {
                         return (
                           <option key={tech.id} value={tech.id}>{tech.technician_name}</option>
                         )
-                      })}
+                      })} */}
                     </select>
                   </div>
                   <button className="btn btn-primary">Schedule</button>
@@ -150,6 +151,7 @@ class ApptCreateForm extends React.Component {
           </div>
         );
       }
-    }
+    };
+
     
-    export default ApptCreateForm;
+export default ApptCreateForm;

@@ -11,3 +11,5 @@ class TechnicianCreateForm extends React.Component {
 
     }
 }
+
+export default TechnicianCreateForm;
