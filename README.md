@@ -2,15 +2,14 @@
 
 Team:
 
-* Person 1 - Which microservice?
-* Person 2 - Which microservice?
+* Caleb - Service
+* Mark - Sales
 
 ## Design
 
 ## Service microservice
 
-Explain your models and integration with the inventory
-microservice, here.
+I will keep track of automobile sales that come from the inventory.
 
 ## Sales microservice
 

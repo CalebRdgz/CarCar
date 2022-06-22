@@ -1,3 +1,4 @@
+import dj_database_url
 """
 Django settings for sales_project project.
 
@@ -45,6 +46,7 @@ MIDDLEWARE = [
 
 ALLOWED_HOSTS = [
     "localhost",
+    "inventory-api",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
