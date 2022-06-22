@@ -22,7 +22,7 @@ class AutomobilesVOEncoder(ModelEncoder):
 class ServiceAppointmentEncoder(ModelEncoder):
     model = ServiceAppointment
     properties = [
-    "customer name",
+    "customer_name",
     "reason",
     "technician",
     "date",

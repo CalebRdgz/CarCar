@@ -3,7 +3,7 @@ import MainPage from './MainPage';
 import Nav from './Nav';
 import ApptCreateForm from './ApptCreateForm';
 import ApptList from './ApptList';
-import TechnicianCreateForm from './TechnicianCreateForm';
+import TechnicianCreateForm from './TechnicianCreateForm.js';
 
 function App() {
   return (

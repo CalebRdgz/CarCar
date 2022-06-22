@@ -1,5 +1,5 @@
 function ApptList(props) {
-    if (props.appt === undefined){
+    if (props.appts === undefined){
       return null
     }
     return (
@@ -12,6 +12,7 @@ function ApptList(props) {
             <th>Time</th>
             <th>Technician</th>
             <th>Reason</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -24,6 +25,7 @@ function ApptList(props) {
                 <td>{ appt.time }</td>
                 <td>{ appt.technician }</td>
                 <td>{ appt.reason }</td>
+                <td>{ appt.reason }</td>
               </tr>
             );
           })}
@@ -32,4 +34,4 @@ function ApptList(props) {
     );
   }
   
-  export default HatsList;
+  export default ApptList;
