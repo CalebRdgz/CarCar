@@ -32,18 +32,18 @@ class ServiceAppointmentEncoder(ModelEncoder):
     model = ServiceAppointment
     properties = [
     "id",
-    "automobile_id",
     "customer_name",
     "reason",
     "date",
     "time",
     "active",
-    "technician"
+    "technician",
+    "automobile"
     ]
 
     encoders={
     "technician": TechnicianEncoder(),
-    "automobile_vin": AutomobilesVOEncoder()
+    "automobile": AutomobilesVOEncoder()
     }
 
 
@@ -91,13 +91,20 @@ def api_service_details(request, pk):
         try:
             content = json.loads(request.body)
             appt = ServiceAppointment.objects.get(id=pk)
+            technician_id = content["technician_id"]
+            tech = Technician.objects.get(id=technician_id)
+            content["technician"] = tech
+            auto_id = content["automobile_id"]
+            auto = AutomobileVO.objects.get(id = auto_id)
+            content["automobile"] = auto
             props = [
-                "customer name",
+                "automobile",
+                "customer_name",
                 "reason",
-                "technician",
                 "date",
                 "time",
-                "active"
+                "active",
+                "technician"
                 ]
             for prop in props:
                 if prop in content:
