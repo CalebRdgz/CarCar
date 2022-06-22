@@ -1,4 +1,4 @@
-from django.urls import path,
+from django.urls import path
 from .views import api_service_list, api_service_details
 
 urlpatterns = [

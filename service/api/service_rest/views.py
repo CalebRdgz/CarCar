@@ -24,7 +24,10 @@ class ServiceAppointmentEncoder(ModelEncoder):
     properties = [
     "customer name",
     "reason",
-    "technician"
+    "technician",
+    "date",
+    "time",
+    "active"
     ]
 
     encoders={
@@ -59,6 +62,54 @@ def api_service_list(request):
         )
 
 
-@require_http_methods(["GET", "PUT", ""])
+@require_http_methods(["GET", "PUT", "DELETE"])
 def api_service_details(request, pk):
+    if request.method == "GET":
+        try:
+            appt = ServiceAppointment.objects.get(id=pk)
+            return JsonResponse(
+                appt,
+                encoder=ServiceAppointmentEncoder,
+                safe=False
+            )
+        except ServiceAppointment.DoesNotExist:
+            response = JsonResponse({"message": "** hand wave ** These aren't the droids you're looking for."})
+            response.status_code = 404
+            return response
+    elif request.method == "PUT":
+        try:
+            content = json.loads(request.body)
+            appt = ServiceAppointment.objects.get(id=pk)
+            props = [
+                "customer name",
+                "reason",
+                "technician",
+                "date",
+                "time",
+                "active"
+                ]
+            for prop in props:
+                if prop in content:
+                    setattr(appt, prop, content[prop])
+            appt.save()
+            return JsonResponse(
+                appt,
+                encoder=ServiceAppointmentEncoder,
+                safe=False,
+                )
+        except ServiceAppointment.DoesNotExist:
+            response = JsonResponse({"message": "** hand wave ** These aren't the droids you're looking for."})
+            response.status_code = 404
+            return response
+    else: # DELETE
+        try:
+            appt = ServiceAppointment.objects.get(id=pk)
+            appt.delete()
+            return JsonResponse(
+                appt,
+                encoder=ServiceAppointmentEncoder,
+                safe=False,
+            )
+        except ServiceAppointment.DoesNotExist:
+            return JsonResponse({"message": "BOI! You deleted dat!"})
     

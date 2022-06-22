@@ -17,6 +17,9 @@ class Technician(models.Model):
 class ServiceAppointment(models.Model):
     customer_name = models.CharField(max_length=50)
     reason = models.CharField(max_length=200)
+    date = models.DateField(null=True)
+    time = models.TimeField(null=True)
+    active = models.BooleanField(default=True)
     technician = models.ForeignKey(
         Technician,
         related_name = "technician",
