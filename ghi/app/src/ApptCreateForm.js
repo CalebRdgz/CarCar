@@ -56,7 +56,7 @@ class ApptCreateForm extends React.Component {
         
 
         async handleSubmit(event) {
-        event.preventDefault();
+        // event.preventDefault();
         const data = {...this.state};
         console.log('submit: ', data)
 
@@ -78,7 +78,7 @@ class ApptCreateForm extends React.Component {
                 date: '',
                 time: '',
                 active: '',
-                technician: '',
+                technician: [],
             });
         }
         }
