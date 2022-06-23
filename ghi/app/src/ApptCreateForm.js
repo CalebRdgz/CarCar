@@ -10,7 +10,6 @@ class ApptCreateForm extends React.Component {
             reason: '',
             date: '',
             time: '',
-            active: '',
             technician: [],
         };
 
@@ -19,7 +18,6 @@ class ApptCreateForm extends React.Component {
         this.handleReasonChange = this.handleReasonChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
         this.handleTimeChange = this.handleTimeChange.bind(this);
-        this.handleActiveChange = this.handleActiveChange.bind(this);
         this.handleTechnicianChange = this.handleTechnicianChange.bind(this);
         this.handleVINChange = this.handleVINChange.bind(this);
         }
@@ -44,17 +42,13 @@ class ApptCreateForm extends React.Component {
             this.setState({ time: value });
         }
 
-        handleActiveChange(event) {
-            const value = event.target.value;
-            this.setState({ active: value }); 
-        }
 
         handleTechnicianChange(event) {
             const value = event.target.value;
-            this.setState({ technician: value }); 
+            this.setState({ technician_id: value }); 
             }
 
-            
+
         handleVINChange(event) {
             const value = event.target.value;
             this.setState({ vin: value }); 
@@ -97,12 +91,9 @@ class ApptCreateForm extends React.Component {
             const data = await response.json();
             console.log(data)
             this.setState({technician: data});
-
         }}
     
 
-    
-    
       render(){
         return (
           <div className="row">
