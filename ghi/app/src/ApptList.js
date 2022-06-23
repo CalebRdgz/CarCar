@@ -1,59 +1,52 @@
 import React from "react";
 import { renderMatches } from "react-router-dom";
 
+
 class ApptList extends React.Component {
   constructor(props){
     super(props);
 
     this.state = {
-            vin: '',
-            customer_name: '',
-            reason: '',
-            date: '',
-            time: '',
-            active: true,
-            technician: [],
+      status: ""
     }
-  
 
-  this.handleClick = this.handleClick.bind(this)
-  this.handleActiveChange = this.handleActiveChange.bind(this)
+  this.handleFinish = this.handleFinish.bind(this)
+  this.handleCancel = this.handleCancel.bind(this)
   }
 
-  handleActiveChange(event) {
-    this.setState({active: false})
-  }
   
-  async handleClick(event) {
-    event.preventDefault();
-    this.setState(prevState => ({active: false}))
+  async handleFinish(event) {
+    const value = event.target.value;
+    const locationUrl = `http://localhost:8080/api/service/${value}/`;
+    const fetchConfig = {
+            method: "put",
+            body: JSON.stringify({status: "FINISHED"}),
+            headers: {
+            'Content-Type': 'application/json',
+            },
+          }
+    const response = await fetch(locationUrl, fetchConfig);
+    if (response.ok) {
+      // const statusChange = await response.json();
+      this.setState({
+          status: '',
+      });
+  }}
+
+  async handleCancel(event) {
+    this.setState(({status: "CANCELLED"}))
     const data = {...this.state};
-    console.log('click event : ', data)
-  
-    // const appointmentUrl = 'http://localhost:8080/api/service/';
-    // const fetchConfig = {
-    //   method: "post",
-    //   body: JSON.stringify(data),
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    // };
-    // const response = await fetch(appointmentUrl, fetchConfig);
     }
 
-    async componentDidMount() {
-      const url = 'http://localhost:8080/api/service/';
-      const response = await fetch(url);
-      console.log(response)
-    
-      if (response.ok) {
-          const data = await response.json();
-          console.log(data)
-          this.setState ({appts: data});
-      }}
+  async componentDidMount() {
+    const url = 'http://localhost:8080/api/service/';
+    const response = await fetch(url);
   
-
-
+    if (response.ok) {
+        const data = await response.json();
+        this.setState ({appts: data});
+    }}
+  
 
   render() {
     if (this.props.appts === undefined){
@@ -68,13 +61,13 @@ class ApptList extends React.Component {
             <th>Date</th>
             <th>Time</th>
             <th>Technician</th>
-            <th>Reason</th>
+            <th>Customer States</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           {this.props.appts.map(appt => {
-            if (appt.active === true){
+            if (appt.status === "ACTIVE"){
             return (
               <tr key={appt.id}>
                 <td>{ appt.vin }</td>
@@ -84,8 +77,8 @@ class ApptList extends React.Component {
                 <td>{ appt.technician.technician_name }</td>
                 <td>{ appt.reason }</td>
                 <td>
-                  <button onClick = {this.handleClick} type="button" className="btn btn-success">Finished</button>
-                  <button onClick = {this.handleClick} type="button" className="btn btn-danger">Cancel</button>
+                  <button onClick = {this.handleFinish} value={appt.id} type="button" className="btn btn-success">Finished</button>
+                  <button onClick = {this.handleCancel} value={appt.id} type="button" className="btn btn-danger">Cancel</button>
                 </td>
               </tr>
             );

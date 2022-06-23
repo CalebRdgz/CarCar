@@ -58,8 +58,6 @@ class ApptCreateForm extends React.Component {
         async handleSubmit(event) {
         // event.preventDefault();
         const data = {...this.state};
-        console.log('submit: ', data)
-
         const locationUrl = 'http://localhost:8080/api/service/';
         const fetchConfig = {
             method: "post",

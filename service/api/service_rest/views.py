@@ -36,7 +36,7 @@ class ServiceAppointmentEncoder(ModelEncoder):
     "reason",
     "date",
     "time",
-    "active",
+    "status",
     "technician",
     "vin"
     ]
@@ -86,16 +86,14 @@ def api_service_details(request, pk):
         try:
             content = json.loads(request.body)
             appt = ServiceAppointment.objects.get(id=pk)
-            technician_id = content["technician_id"]
-            tech = Technician.objects.get(id=technician_id)
-            content["technician"] = tech
+            # appt.status = content["status"]        
             props = [
                 "vin",
                 "customer_name",
                 "reason",
                 "date",
                 "time",
-                "active",
+                "status",
                 "technician"
                 ]
             for prop in props:
@@ -111,6 +109,37 @@ def api_service_details(request, pk):
             response = JsonResponse({"message": "** hand wave ** These aren't the droids you're looking for."})
             response.status_code = 404
             return response
+        # try:
+        #     content = json.loads(request.body)
+        #     print("content print: ", content)
+        #     appt = ServiceAppointment.objects.get(id=pk)
+        #     technician_id = content["technician_id"]
+        #     tech = Technician.objects.get(id=technician_id)
+        #     content["technician"] = tech
+            
+        #     props = [
+        #         "vin",
+        #         "customer_name",
+        #         "reason",
+        #         "date",
+        #         "time",
+        #         "status",
+        #         "technician"
+        #         ]
+        #     for prop in props:
+        #         if prop in content:
+        #             setattr(appt, prop, content[prop])
+        #     print(appt)
+        #     appt.save()
+        #     return JsonResponse(
+        #         appt,
+        #         encoder=ServiceAppointmentEncoder,
+        #         safe=False,
+        #         )
+        # except ServiceAppointment.DoesNotExist:
+        #     response = JsonResponse({"message": "** hand wave ** These aren't the droids you're looking for."})
+        #     response.status_code = 404
+        #     return response
     else: # DELETE
         try:
             appt = ServiceAppointment.objects.get(id=pk)
