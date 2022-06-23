@@ -6,7 +6,7 @@ import SalesRepForm from "./SalesRepForm";
 import SaleRecordForm from "./SaleRecordForm";
 import SalesList from "./SalesList";
 import SalesByReps from "./SalesByReps";
-import ListManufacturers from "./ListManufacturers";
+import ListManufacturers from "./ManufacturersList";
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 import React from "react"
 
-export default function ListManufacturers({manufacturers}) {
+export default function ManufacturersList({manufacturers}) {
     return (
         <React.Fragment>
             <h1>All Manufacturers</h1>
