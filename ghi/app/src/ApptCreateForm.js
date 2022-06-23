@@ -11,7 +11,7 @@ class ApptCreateForm extends React.Component {
             date: '',
             time: '',
             active: '',
-            technician: '',
+            technician: [],
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -90,19 +90,15 @@ class ApptCreateForm extends React.Component {
         }
 
 
-        // async componentDidMount() {
-        // const url = 'http://localhost:8100/api/locations';
-        // const response = await fetch(url);
-        // if (response.ok) {
-        //     const data = await response.json();
-        //     this.setState({locations: data.locations});
-            // const selectTag = document.querySelector('#closet_location')
-            // for (let loc of data.locations){
-            //     const option = document.createElement('option')
-            //     option.value = loc.closet_name
-            //     option.innerHTML = loc.closet_name
-            //     selectTag.appendChild(option)
-            // }
+        async componentDidMount() {
+        const url = 'http://localhost:8080/api/service/technician/'
+        const response = await fetch(url);
+        if (response.ok) {
+            const data = await response.json();
+            console.log(data)
+            this.setState({technician: data});
+
+        }}
     
 
     
@@ -135,13 +131,13 @@ class ApptCreateForm extends React.Component {
                     <label htmlFor="time">Time</label>
                   </div>
                   <div className="mb-3">
-                    <select onChange={this.handleActiveChange} required name="technician" id="technician" className="form-select">
-                      <option value="" id="closet_technician" >Choose Technician</option>
-                      {/* {this.state.technician_name.map(tech=> {
+                    <select onChange={this.handleTechnicianChange} required name="technician" id="technician" className="form-select">
+                      <option value="" id="technician_id" >Choose Technician</option>
+                      {this.state.technician.map(tech=> {
                         return (
                           <option key={tech.id} value={tech.id}>{tech.technician_name}</option>
                         )
-                      })} */}
+                      })}
                     </select>
                   </div>
                   <button className="btn btn-primary">Schedule</button>

@@ -19,13 +19,13 @@ function ApptList(props) {
           {props.appts.map(appt => {
             return (
               <tr key={appt.id}>
-                <td>{ appt.vin }</td>
+                <td>{ appt.automobile.vin }</td>
                 <td>{ appt.customer_name}</td>
                 <td>{ appt.date }</td>
                 <td>{ appt.time }</td>
-                <td>{ appt.technician }</td>
+                <td>{ appt.technician.technician_name }</td>
                 <td>{ appt.reason }</td>
-                <td>{ appt.reason }</td>
+                {/* <td>{ appt.reason }</td> */}
               </tr>
             );
           })}

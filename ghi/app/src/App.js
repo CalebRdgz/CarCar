@@ -5,7 +5,7 @@ import ApptCreateForm from './ApptCreateForm';
 import ApptList from './ApptList';
 import TechnicianCreateForm from './TechnicianCreateForm.js';
 
-function App() {
+function App(props) {
   return (
     <BrowserRouter>
       <Nav />
@@ -13,9 +13,9 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="service" >
-            <Route path="" element={<ApptList />} />
+            <Route path="" element={<ApptList appts = {props.appts} />} />
             <Route path="new" element={<ApptCreateForm />} />
-            <Route path="technician" element={<TechnicianCreateForm/>} />
+            <Route path="technician" element={<TechnicianCreateForm />} />
           </Route>
         </Routes>
       </div>
