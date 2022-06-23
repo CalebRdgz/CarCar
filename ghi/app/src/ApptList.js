@@ -41,13 +41,6 @@ class ApptList extends React.Component {
           const data = await response.json();
           console.log(data)
           this.setState ({appts: data});
-          // const selectTag = document.querySelector('#state')
-          // for (let state of data.states){
-          //     const option = document.createElement('option')
-          //     option.value = state.abbreviation
-          //     option.innerHTML = state.name
-          //     selectTag.appendChild(option)
-          // }
       }}
   
 

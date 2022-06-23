@@ -9,6 +9,7 @@ class TechnicianCreateForm extends React.Component {
           employee_number: '',
         };
         
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.handleTechnicianNameChange = this.handleTechnicianNameChange.bind(this);
         this.handleEmployeeNumberChange = this.handleEmployeeNumberChange.bind(this);
 
@@ -40,16 +41,13 @@ class TechnicianCreateForm extends React.Component {
         const response = await fetch(locationUrl, fetchConfig);
         if (response.ok) {
             const newTech = await response.json();
+            console.log(newTech)
             this.setState({
                 technician_name: '',
                 employee_number: '',
             });
         }
-        }
-
-
-
-
+    }
 
 
     render(){
@@ -58,7 +56,7 @@ class TechnicianCreateForm extends React.Component {
           <div className="offset-3 col-6">
             <div className="shadow p-4 mt-4">
               <h1>Create New Technician</h1>
-              <form onSubmit={this.handleSubmit} id="create-conference-form">
+              <form onSubmit={this.handleSubmit} id="create-technician-form">
               <div className="form-floating mb-3">
                   <input onChange={this.handleTechnicianNameChange} placeholder="Technician Name" required type="text" name="tech_name" id="tech_name" className="form-control" />
                   <label htmlFor="technician_name">Technician Name</label>
