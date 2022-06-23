@@ -20,15 +20,9 @@ class ServiceAppointment(models.Model):
     date = models.DateField(null=True)
     time = models.TimeField(null=True)
     active = models.BooleanField(default=True)
+    vin = models.CharField(max_length=17)
     technician = models.ForeignKey(
         Technician,
         related_name = "technician",
         on_delete=models.PROTECT,
     )
-
-    automobile = models.ForeignKey(
-        AutomobileVO,
-        related_name="automobile",
-        on_delete=models.CASCADE,
-    )
-
