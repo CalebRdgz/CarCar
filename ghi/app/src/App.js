@@ -25,8 +25,8 @@ function App(props) {
             <Route path="technician" element={<TechnicianCreateForm />} />
             <Route path="history" element={<ServiceHistory appts = {props.appts}/>} />
           </Route>
-          <Route path = "inventory"> 
-            
+          <Route path = "manufacturers"> 
+            <Route path="" element={<ListManufacturers manufacturers={props.manufacturers} />} />
           </Route>
 
 {/* 

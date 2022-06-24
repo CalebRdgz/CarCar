@@ -24,6 +24,29 @@ async function loadAppts(){
   
 loadAppts();
 
+async function getInventoryData(){
+  const manufacturerResponse = await fetch('http://localhost:8100/api/manufacturers')
+  const vehicleModelResponse = await fetch('http://localhost:8100/api/models')
+  const automobileResponse = await fetch('http://localhost:8100/api/automobiles/')
+
+  if(manufacturerResponse.ok && vehicleModelResponse.ok && automobileResponse.ok){
+  const manufacturerData = await manufacturerResponse.json();
+  const vehicleModelData = await vehicleModelResponse.json();
+  const AutomobileData = await automobileResponse.json();
+
+    root.render(
+    <React.StrictMode>
+      <App
+      manufacturers={manufacturerData.manufacturers}
+      vehicleModels={vehicleModelData.models}
+      automobiles={AutomobileData.autos}
+      />
+    </React.StrictMode>
+    )
+  }   
+}
+getInventoryData();
+
 // async function getSalesData() {
 //   const customerResponse = await fetch('http://localhost:8090/api/customers')
 //   const carInventoryResponse = await fetch('http://localhost:8090/api/cars')
