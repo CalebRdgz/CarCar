@@ -1,6 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
+import ApptCreateForm from './ApptCreateForm';
+import ApptList from './ApptList';
+import TechnicianCreateForm from './TechnicianCreateForm.js';
+import ServiceHistory from './ServiceHistory';
 import CustomerForm from "./CustomerForm";
 import SalesRepForm from "./SalesRepForm";
 import SaleRecordForm from "./SaleRecordForm";
@@ -8,15 +12,21 @@ import SalesList from "./SalesList";
 import SalesByReps from "./SalesByReps";
 import ListManufacturers from "./ManufacturersList";
 
-function App() {
+function App(props) {
   return (
     <BrowserRouter>
       <Nav />
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="service" >
+            <Route path="" element={<ApptList appts = {props.appts} />} />
+            <Route path="new" element={<ApptCreateForm />} />
+            <Route path="technician" element={<TechnicianCreateForm />} />
+            <Route path="history" element={<ServiceHistory appts = {props.appts}/>} />
+          </Route>
 
-
+{/* 
           <Route path='customer'>
             <Route path="new" element={<CustomerForm />} />
           </Route>
@@ -32,7 +42,7 @@ function App() {
             salesReps={salesReps}
              />} />
           </Route>
-          <Route path="manufacturers" element={<ListManufacturers manufacturers={manufacturers} />} />
+          <Route path="manufacturers" element={<ListManufacturers manufacturers={manufacturers} />} /> */}
         </Routes>
       </div>
     </BrowserRouter>
