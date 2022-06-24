@@ -5,6 +5,12 @@ import ApptCreateForm from './ApptCreateForm';
 import ApptList from './ApptList';
 import TechnicianCreateForm from './TechnicianCreateForm.js';
 import ServiceHistory from './ServiceHistory';
+import CustomerForm from "./CustomerForm";
+import SalesRepForm from "./SalesRepForm";
+import SaleRecordForm from "./SaleRecordForm";
+import SalesList from "./SalesList";
+import SalesByReps from "./SalesByReps";
+import ListManufacturers from "./ManufacturersList";
 
 function App(props) {
   return (
@@ -19,6 +25,24 @@ function App(props) {
             <Route path="technician" element={<TechnicianCreateForm />} />
             <Route path="history" element={<ServiceHistory appts = {props.appts}/>} />
           </Route>
+
+{/* 
+          <Route path='customer'>
+            <Route path="new" element={<CustomerForm />} />
+          </Route>
+          <Route path='employee'>
+            <Route path="new" element={<SalesRepForm />} />
+          </Route>
+          <Route path='sales'>
+            <Route path="" element={<SalesList salesList={salesList} />} />
+            <Route path="by-rep" element={<SalesByReps salesReps={salesReps} />} />
+            <Route path="create" element={<SaleRecordForm 
+            customers={customers}
+            cars={cars}
+            salesReps={salesReps}
+             />} />
+          </Route>
+          <Route path="manufacturers" element={<ListManufacturers manufacturers={manufacturers} />} /> */}
         </Routes>
       </div>
     </BrowserRouter>
