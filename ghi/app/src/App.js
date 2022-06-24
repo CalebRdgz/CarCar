@@ -53,3 +53,46 @@ function App(props) {
 }
 
 export default App;
+
+export default class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      sales_records: [],
+      manufacturers: [],
+      models: []
+    };
+  }
+
+  async componentDidMount(){
+  Promise.all([
+    fetch('http://localhost:8090/api/sales-records/'),
+    fetch('http://localhost:8090/api/manufacturers/'),
+    fetch('http://localhost:8090/api/models/')
+  ])
+    .then(([sales_records, manufacturers, models]) => {
+      return Promise.all([
+        sales_records.json(),
+        manufacturers.json(),
+        models.json()
+      ])
+    })
+    .then(
+      ([sales_records, manufacturers, models]) => {
+        this.setState(sales_records);
+        this.setState(manufacturers);
+        this.setState(models);
+      })
+}
+
+render(){
+  return (
+    <BrowserRouter>
+      <Nav />
+      <div className="container">
+        
+      </div>
+    </BrowserRouter>
+  )
+}
+}
