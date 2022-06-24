@@ -33,7 +33,6 @@ async function getInventoryData(){
   const manufacturerData = await manufacturerResponse.json();
   const vehicleModelData = await vehicleModelResponse.json();
   const AutomobileData = await automobileResponse.json();
-  console.log(AutomobileData.autos)
 
     root.render(
     <React.StrictMode>
