@@ -45,6 +45,7 @@ class AutomobileCreateForm extends React.Component {
         event.preventDefault();
         const data = {...this.state};
         delete data.model_list
+        console.log(data)
         const url = 'http://localhost:8100/api/automobiles/';
         const fetchConfig = {
             method: "post",
@@ -72,7 +73,6 @@ class AutomobileCreateForm extends React.Component {
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
-            console.log(data)
             this.setState({model_list: data.models});
         }}
     
@@ -85,15 +85,15 @@ class AutomobileCreateForm extends React.Component {
                 <h1>Create a New Automobile</h1>
                 <form onSubmit={this.handleSubmit} id="create-model-form">
                 <div className="form-floating mb-3">
-                    <input onChange={this.handleColorChange} placeholder="Color" required type="text" name="color" id="color" className="form-control" />
+                    <input onChange={this.handleColorChange} placeholder="Color" required type="text" value ={this.state.color} name="color" id="color" className="form-control" />
                     <label htmlFor="name">Color</label>
                   </div>
                   <div className="form-floating mb-3">
-                    <input onChange={this.handleYearChange} placeholder="Year" required type="text" name="year" id="year" className="form-control" />
+                    <input onChange={this.handleYearChange} placeholder="Year" required type="text" value ={this.state.year} name="year" id="year" className="form-control" />
                     <label htmlFor="year">Year</label>
                   </div>
                   <div className="form-floating mb-3">
-                    <input onChange={this.handleVINChange} placeholder="VIN" required type="text" name="vin" id="vin" className="form-control" />
+                    <input onChange={this.handleVINChange} placeholder="VIN" required type="text" value ={this.state.vin} name="vin" id="vin" className="form-control" />
                     <label htmlFor="customer_name">VIN</label>
                   </div>
                   <div className="mb-3">

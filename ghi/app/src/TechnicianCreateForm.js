@@ -58,11 +58,11 @@ class TechnicianCreateForm extends React.Component {
               <h1>Create New Technician</h1>
               <form onSubmit={this.handleSubmit} id="create-technician-form">
               <div className="form-floating mb-3">
-                  <input onChange={this.handleTechnicianNameChange} placeholder="Technician Name" required type="text" name="tech_name" id="tech_name" className="form-control" />
+                  <input onChange={this.handleTechnicianNameChange} placeholder="Technician Name" required type="text" value ={this.state.technician_name} name="tech_name" id="tech_name" className="form-control" />
                   <label htmlFor="technician_name">Technician Name</label>
                 </div>
                 <div className="form-floating mb-3">
-                  <input onChange={this.handleEmployeeNumberChange} placeholder="Employee Number" required type="text" name="employee_number" id="employee_number" className="form-control" />
+                  <input onChange={this.handleEmployeeNumberChange} placeholder="Employee Number" required type="text" value ={this.state.employee_number} name="employee_number" id="employee_number" className="form-control" />
                   <label htmlFor="employee_number">Employee Number</label>
                 </div>
                 <button className="btn btn-primary">Create</button>
