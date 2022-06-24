@@ -8,11 +8,13 @@ class ApptList extends React.Component {
 
     this.state = {
       status: '',
-      appts: []
+      appts: [],
+      soldVins: []
     }
 
   this.handleStatus = this.handleStatus.bind(this)
   this.updateAppointment = this.updateAppointment.bind(this)
+  this.getApptsandInventory = this.getApptsandInventory.bind(this)
   }
 
   updateAppointment(index, newStatus){
@@ -22,7 +24,6 @@ class ApptList extends React.Component {
   }
 
   async handleStatus(event, status) {
-    console.log(event)
     const value = event.target.value;
     const locationUrl = `http://localhost:8080/api/service/${value}/`;
     const fetchConfig = {
@@ -44,28 +45,51 @@ class ApptList extends React.Component {
     }
   }
 
+  async getApptsandInventory() {
+    const apptUrl = 'http://localhost:8080/api/service/'
+    const inventoryUrl = 'http://localhost:8080/api/service/sold/'
+
+      const apptResponse = await fetch(apptUrl)
+      const inventoryResponse = await fetch(inventoryUrl)
+      if (apptResponse.ok) {
+        const data = await apptResponse.json();
+        this.setState ({appts: data});
+      }
+      if(inventoryResponse.ok) {
+        const vinData = await inventoryResponse.json()
+        // console.log(apptData.appointments)
+        // console.log(inventoryResponse.inventory_vins)
+        const list = []
+        for (let vin of vinData) {
+          list.push(vin['vin'])
+        }
+        this.setState({
+          soldVins: list,
+        })
+      }
+    } 
+
+
 
   async componentDidMount() {
-    const url = 'http://localhost:8080/api/service/';
-    const response = await fetch(url);
-  
-    if (response.ok) {
-        const data = await response.json();
-        this.setState ({appts: data});
-        console.log(this.state)
+      this.getApptsandInventory()
 
-    }}
-  
+    // const serviceUrl = 'http://localhost:8080/api/service/';
+    // const response = await fetch(serviceUrl);
+    // if (response.ok) {
+    //     const data = await response.json();
+    //     this.setState ({appts: data});
+    // }
+  }
 
   render() {
-    // if (!this.state.appts){
-    //   return null
-    // }
+
     return (
       <table className="table table-striped">
         <thead>
           <tr>
             <th>VIN</th>
+            <th>VIP</th>
             <th>Customer Name</th>
             <th>Date</th>
             <th>Time</th>
@@ -80,6 +104,7 @@ class ApptList extends React.Component {
             return (
               <tr key={appt.id}>
                 <td>{ appt.vin }</td>
+                <td> { this.state.soldVins.includes(appt.vin)} </td>
                 <td>{ appt.customer_name}</td>
                 <td>{ appt.date }</td>
                 <td>{ appt.time }</td>

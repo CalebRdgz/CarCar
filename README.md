@@ -9,7 +9,9 @@ Team:
 
 ## Service microservice
 
-The service microservice uses two standalone models and one value object (VO) model. The appointment model tracks the customer name, VIN, appt date, appt time, appointment status (Active, Cancelled, Finished), and the assigned technician. The appointment model has many to one relationship with the technician model, since many appointments can have the same technician.
+The service microservice uses two standalone models and one value object (VO) model. All of the aforementioned models are part of the "service" bounded context and therefore put into their own microservice
+
+The appointment model tracks the customer name, VIN, appt date, appt time, appointment status (Active, Cancelled, Finished), and the assigned technician. The appointment model has many to one relationship with the technician model, since many appointments can have the same technician.
 
 The technician model tracks the tech name and employee number and has a one to many relationship with 
 

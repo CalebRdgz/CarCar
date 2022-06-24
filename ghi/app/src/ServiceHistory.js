@@ -20,7 +20,6 @@ class ServiceHistory extends React.Component {
     console.log(request)
     if (request.ok) {
       const data = await request.json();
-      console.log(data)
       this.setState({appts: data})
     } else{
       console.log("bad request")

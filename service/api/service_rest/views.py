@@ -13,9 +13,6 @@ from .models import ServiceAppointment, Technician, AutomobileVO
 class AutomobilesVOEncoder(ModelEncoder):
     model = AutomobileVO
     properties = [
-        "id",
-        "color",
-        "year", 
         "vin"
     ]
 
@@ -180,5 +177,14 @@ def api_service_history(request, pk):
         safe=False
     )
 
+
+@require_http_methods(["GET"])
+def api_sold_inventory(request):
+    autos = AutomobileVO.objects.all()
+    return JsonResponse(
+        autos,
+        encoder=AutomobilesVOEncoder,
+        safe=False
+    )
 
 
