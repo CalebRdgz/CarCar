@@ -1,6 +1,7 @@
 import React from 'react';
+import VehicleModelList from './VehicleModelList';
 
-class ApptCreateForm extends React.Component {
+class VehicleModelCreateForm extends React.Component {
         constructor(props) {
         super(props);
 
@@ -105,4 +106,4 @@ class ApptCreateForm extends React.Component {
     };
 
     
-export default ApptCreateForm;
+export default VehicleModelCreateForm;

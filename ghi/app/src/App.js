@@ -41,7 +41,7 @@ function App(props) {
           </Route>
           <Route path = "automobiles"> 
             <Route path="" element={<AutomobileList automobiles={props.automobiles} />} />
-            {/* <Route path="new" element={<AutomobileCreateForm />} /> */}
+            <Route path="new" element={<AutomobileCreateForm />} />
           </Route>
 
 {/* 
