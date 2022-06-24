@@ -7,6 +7,8 @@ Team:
 
 ## Design
 
+Please view the design drawing - project-beta/Project Beta Design.png
+
 ## Service microservice
 
 The service microservice uses two standalone models and one value object (VO) model. All of the aforementioned models are part of the "service" bounded context and therefore put into their own microservice

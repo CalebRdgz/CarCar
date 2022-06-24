@@ -104,7 +104,7 @@ class ApptList extends React.Component {
             return (
               <tr key={appt.id}>
                 <td>{ appt.vin }</td>
-                <td> { this.state.soldVins.includes(appt.vin)} </td>
+                <td> { this.state.soldVins.includes(appt.vin) ? "YES":"NO"} </td>
                 <td>{ appt.customer_name}</td>
                 <td>{ appt.date }</td>
                 <td>{ appt.time }</td>
