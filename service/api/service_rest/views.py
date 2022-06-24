@@ -170,3 +170,15 @@ def api_tech_list(request):
             encoder=TechnicianEncoder,
             safe = False
         )
+
+@require_http_methods(["GET"])
+def api_service_history(request, pk):
+    appts = ServiceAppointment.objects.filter(vin=pk, status="FINISHED")
+    return JsonResponse(
+        appts,
+        encoder=ServiceAppointmentEncoder,
+        safe=False
+    )
+
+
+

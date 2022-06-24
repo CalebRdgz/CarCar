@@ -1,14 +1,48 @@
-function ServiceHistory(props){
-  if (props.hats === undefined){
-    return null
+import React from 'react';
+
+class ServiceHistory extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      vin: '',
+      appts: [],
+    };
+    this.handleVinChange = this.handleVinChange.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
-    return (
-      <>
-        <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" />
-          <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">Button</button>
-        </div>
+
+  async handleSearch(event){
+    event.preventDefault();
+    console.log("working")
+    const url = `http://localhost:8080/api/service/history/${this.state.vin}/`
+
+    const request = await fetch(url);
+    console.log(request)
+    if (request.ok) {
+      const data = await request.json();
+      console.log(data)
+      this.setState({appts: data})
+    } else{
+      console.log("bad request")
+    }
+  }
+
+  handleVinChange(event) {
+    let value = event.target.value;
+    value = value.toUpperCase()
+    this.setState({vin: value})
+  }
+
+render() { 
+  return(
+      <div>
+        <div className="input-group mb-3">
+          <form id="service-history-search" onSubmit={ this.handleSearch }>
+          <input className="form-control" value={this.state.vin} onChange={this.handleVinChange}
+          id={this.state.vin} name={this.state.vin} maxLength={17}
+          minLength={17} required type="text" placeholder="VIN"/>
+            <button className="btn btn-outline-secondary" type="submit">Search for VIN</button>
+          </form>
         </div>
         <table className="table table-striped">
           <thead>
@@ -23,8 +57,7 @@ function ServiceHistory(props){
             </tr>
           </thead>
           <tbody>
-            {props.appts.map(appt => {
-              if (appt.status === "ACTIVE"){
+            {this.state.appts?.map(appt => {
               return (
                 <tr key={appt.id}>
                   <td>{ appt.vin }</td>
@@ -33,17 +66,14 @@ function ServiceHistory(props){
                   <td>{ appt.time }</td>
                   <td>{ appt.technician.technician_name }</td>
                   <td>{ appt.reason }</td>
-                  <td>
-                    <button onClick = {this.handleFinish} value={appt.id} type="button" className="btn btn-success">Finished</button>
-                    <button onClick = {this.handleCancel} value={appt.id} type="button" className="btn btn-danger">Cancel</button>
-                  </td>
                 </tr>
               );
-            }})}
+            })}
           </tbody>
         </table>
-      </>
+      </div>
     );
   }
+}
 
-  export default ServiceHistory;
+export default ServiceHistory;
