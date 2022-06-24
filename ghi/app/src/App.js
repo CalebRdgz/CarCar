@@ -4,6 +4,7 @@ import Nav from './Nav';
 import ApptCreateForm from './ApptCreateForm';
 import ApptList from './ApptList';
 import TechnicianCreateForm from './TechnicianCreateForm.js';
+import ServiceHistory from './ServiceHistory';
 
 function App(props) {
   return (
@@ -16,6 +17,7 @@ function App(props) {
             <Route path="" element={<ApptList appts = {props.appts} />} />
             <Route path="new" element={<ApptCreateForm />} />
             <Route path="technician" element={<TechnicianCreateForm />} />
+            <Route path="history" element={<ServiceHistory appts = {props.appts}/>} />
           </Route>
         </Routes>
       </div>
