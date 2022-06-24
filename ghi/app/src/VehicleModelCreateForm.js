@@ -67,7 +67,6 @@ class VehicleModelCreateForm extends React.Component {
         if (response.ok) {
             const data = await response.json();
             this.setState({manufacturer_list: data.manufacturers});
-            console.log(this.state)
         }}
     
 

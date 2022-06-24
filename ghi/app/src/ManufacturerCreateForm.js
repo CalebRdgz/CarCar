@@ -22,7 +22,6 @@ class ManufacturerCreateForm extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         const data = {...this.state};
-        console.log('submit: ', data)
 
         const url = 'http://localhost:8100/api/manufacturers/';
         const fetchConfig = {

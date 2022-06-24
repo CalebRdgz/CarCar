@@ -4,7 +4,6 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 import json
 
-from pkg_resources import require
 from common.json import ModelEncoder
 from .models import ServiceAppointment, Technician, AutomobileVO
 
@@ -106,37 +105,6 @@ def api_service_details(request, pk):
             response = JsonResponse({"message": "** hand wave ** These aren't the droids you're looking for."})
             response.status_code = 404
             return response
-        # try:
-        #     content = json.loads(request.body)
-        #     print("content print: ", content)
-        #     appt = ServiceAppointment.objects.get(id=pk)
-        #     technician_id = content["technician_id"]
-        #     tech = Technician.objects.get(id=technician_id)
-        #     content["technician"] = tech
-            
-        #     props = [
-        #         "vin",
-        #         "customer_name",
-        #         "reason",
-        #         "date",
-        #         "time",
-        #         "status",
-        #         "technician"
-        #         ]
-        #     for prop in props:
-        #         if prop in content:
-        #             setattr(appt, prop, content[prop])
-        #     print(appt)
-        #     appt.save()
-        #     return JsonResponse(
-        #         appt,
-        #         encoder=ServiceAppointmentEncoder,
-        #         safe=False,
-        #         )
-        # except ServiceAppointment.DoesNotExist:
-        #     response = JsonResponse({"message": "** hand wave ** These aren't the droids you're looking for."})
-        #     response.status_code = 404
-        #     return response
     else: # DELETE
         try:
             appt = ServiceAppointment.objects.get(id=pk)
@@ -186,5 +154,3 @@ def api_sold_inventory(request):
         encoder=AutomobilesVOEncoder,
         safe=False
     )
-
-

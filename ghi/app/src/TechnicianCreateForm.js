@@ -28,7 +28,6 @@ class TechnicianCreateForm extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         const data = {...this.state};
-        console.log('submit: ', data)
 
         const locationUrl = 'http://localhost:8080/api/service/technician/';
         const fetchConfig = {
@@ -41,7 +40,6 @@ class TechnicianCreateForm extends React.Component {
         const response = await fetch(locationUrl, fetchConfig);
         if (response.ok) {
             const newTech = await response.json();
-            console.log(newTech)
             this.setState({
                 technician_name: '',
                 employee_number: '',

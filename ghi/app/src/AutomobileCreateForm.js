@@ -45,7 +45,6 @@ class AutomobileCreateForm extends React.Component {
         event.preventDefault();
         const data = {...this.state};
         delete data.model_list
-        console.log(data)
         const url = 'http://localhost:8100/api/automobiles/';
         const fetchConfig = {
             method: "post",

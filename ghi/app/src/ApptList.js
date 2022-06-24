@@ -34,14 +34,9 @@ class ApptList extends React.Component {
             },
           }
     const response = await fetch(locationUrl, fetchConfig);
-    console.log(response)
     if (response.ok) {
       const statusChange = await response.json();
-      console.log(statusChange, event.target.id)
       this.updateAppointment(event.target.id, statusChange)
-      // const data = {...this.state};
-      // data.appts[event.target.id] = statusChange
-      // this.setState(data);
     }
   }
 
@@ -57,8 +52,6 @@ class ApptList extends React.Component {
       }
       if(inventoryResponse.ok) {
         const vinData = await inventoryResponse.json()
-        // console.log(apptData.appointments)
-        // console.log(inventoryResponse.inventory_vins)
         const list = []
         for (let vin of vinData) {
           list.push(vin['vin'])
@@ -73,13 +66,6 @@ class ApptList extends React.Component {
 
   async componentDidMount() {
       this.getApptsandInventory()
-
-    // const serviceUrl = 'http://localhost:8080/api/service/';
-    // const response = await fetch(serviceUrl);
-    // if (response.ok) {
-    //     const data = await response.json();
-    //     this.setState ({appts: data});
-    // }
   }
 
   render() {

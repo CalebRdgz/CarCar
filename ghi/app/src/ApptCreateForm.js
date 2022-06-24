@@ -87,7 +87,6 @@ class ApptCreateForm extends React.Component {
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
-            console.log(data)
             this.setState({technician: data});
         }}
     
