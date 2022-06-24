@@ -2,8 +2,8 @@
 
 Team:
 
-* Caleb - Service
-* Mark - Sales
+* Mark Esposito - Service
+* Caleb Rodriquez - Sales
 
 ## Design
 
