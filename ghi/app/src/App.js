@@ -11,6 +11,9 @@ import SaleRecordForm from "./SaleRecordForm";
 import SalesList from "./SalesList";
 import SalesByReps from "./SalesByReps";
 import ListManufacturers from "./ManufacturersList";
+import VehicleModelList from "./VehicleModelList";
+import AutomobileList from './AutomobileList';
+
 
 function App(props) {
   return (
@@ -27,6 +30,12 @@ function App(props) {
           </Route>
           <Route path = "manufacturers"> 
             <Route path="" element={<ListManufacturers manufacturers={props.manufacturers} />} />
+          </Route>
+          <Route path = "models"> 
+            <Route path="" element={<VehicleModelList vehicleModels={props.vehicleModels} />} />
+          </Route>
+          <Route path = "automobiles"> 
+            <Route path="" element={<AutomobileList automobiles={props.automobiles} />} />
           </Route>
 
 {/* 
@@ -54,45 +63,45 @@ function App(props) {
 
 export default App;
 
-export default class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      sales_records: [],
-      manufacturers: [],
-      models: []
-    };
-  }
+// export default class App extends Component {
+//   constructor(props){
+//     super(props);
+//     this.state = {
+//       sales_records: [],
+//       manufacturers: [],
+//       models: []
+//     };
+//   }
 
-  async componentDidMount(){
-  Promise.all([
-    fetch('http://localhost:8090/api/sales-records/'),
-    fetch('http://localhost:8090/api/manufacturers/'),
-    fetch('http://localhost:8090/api/models/')
-  ])
-    .then(([sales_records, manufacturers, models]) => {
-      return Promise.all([
-        sales_records.json(),
-        manufacturers.json(),
-        models.json()
-      ])
-    })
-    .then(
-      ([sales_records, manufacturers, models]) => {
-        this.setState(sales_records);
-        this.setState(manufacturers);
-        this.setState(models);
-      })
-}
+//   async componentDidMount(){
+//   Promise.all([
+//     fetch('http://localhost:8090/api/sales-records/'),
+//     fetch('http://localhost:8090/api/manufacturers/'),
+//     fetch('http://localhost:8090/api/models/')
+//   ])
+//     .then(([sales_records, manufacturers, models]) => {
+//       return Promise.all([
+//         sales_records.json(),
+//         manufacturers.json(),
+//         models.json()
+//       ])
+//     })
+//     .then(
+//       ([sales_records, manufacturers, models]) => {
+//         this.setState(sales_records);
+//         this.setState(manufacturers);
+//         this.setState(models);
+//       })
+// }
 
-render(){
-  return (
-    <BrowserRouter>
-      <Nav />
-      <div className="container">
+// render(){
+//   return (
+//     <BrowserRouter>
+//       <Nav />
+//       <div className="container">
         
-      </div>
-    </BrowserRouter>
-  )
-}
-}
+//       </div>
+//     </BrowserRouter>
+//   )
+// }
+// }
