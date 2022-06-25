@@ -87,7 +87,10 @@ render(){
     <BrowserRouter>
       <Nav />
       <div className="container">
-        
+        <Routes>
+          <Route port="/" element={<MainPage />} />
+          <Route port="sales-person/" element={<SalesRepForm />} />
+        </Routes>
       </div>
     </BrowserRouter>
   )

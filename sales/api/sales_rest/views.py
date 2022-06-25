@@ -8,11 +8,18 @@ from .models import AutomobileVO, PotentialCustomer, SalesPerson, SalesRecord
 
 class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
-    properties = ["vin"]
+    properties = [
+        "vin"
+        ]
 
 class CustomerEncoder(ModelEncoder):
     model = PotentialCustomer
-    properties = ["name", "address", "phone_number", "id"]
+    properties = [
+        "name", 
+        "address", 
+        "phone_number", 
+        "id",
+        ]
 
 
 class SalesPersonEncoder(ModelEncoder):
