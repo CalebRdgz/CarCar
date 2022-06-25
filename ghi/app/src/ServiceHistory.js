@@ -13,16 +13,13 @@ class ServiceHistory extends React.Component {
 
   async handleSearch(event){
     event.preventDefault();
-    console.log("working")
     const url = `http://localhost:8080/api/service/history/${this.state.vin}/`
 
     const request = await fetch(url);
-    console.log(request)
     if (request.ok) {
       const data = await request.json();
       this.setState({appts: data})
     } else{
-      console.log("bad request")
     }
   }
 

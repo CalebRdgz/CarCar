@@ -14,6 +14,24 @@ function Nav() {
               <NavLink className="nav-link active" aria-current="page" to="/">Home</NavLink>
             </li>
             <li className="nav-item">
+              <NavLink className="nav-link" to="manufacturers/">Manufacturers</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="manufacturers/new/">Create Manufacturer</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="models/">Models</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="models/new/">Create Model</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="automobiles/">Automobiles</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="automobiles/new/">Create Automobile</NavLink>
+            </li>
+            <li className="nav-item">
               <NavLink className="nav-link" to="/service/">Service</NavLink>
             </li>
             <li className="nav-item">
@@ -24,6 +42,8 @@ function Nav() {
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/service/history/">Service History</NavLink>
+            </li>
+            <li className="nav-item">
               <NavLink className="nav-link active" aria-current="page" to="/sales">Sales</NavLink>
             </li>
             <li className="nav-item">

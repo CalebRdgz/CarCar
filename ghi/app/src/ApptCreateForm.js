@@ -87,7 +87,6 @@ class ApptCreateForm extends React.Component {
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
-            console.log(data)
             this.setState({technician: data});
         }}
     
@@ -100,23 +99,23 @@ class ApptCreateForm extends React.Component {
                 <h1>Create a New Appointment</h1>
                 <form onSubmit={this.handleSubmit} id="create-appointment-form">
                 <div className="form-floating mb-3">
-                    <input onChange={this.handleVINChange} placeholder="VIN" required type="text" name="vin" id="vin" className="form-control" />
+                    <input onChange={this.handleVINChange} placeholder="VIN" required type="text" name="vin" id="vin" value ={this.state.vin} className="form-control" />
                     <label htmlFor="vin">VIN</label>
                   </div>
                   <div className="form-floating mb-3">
-                    <input onChange={this.handleCustomerNameChange} placeholder="Customer Name" required type="text" name="customer_name" id="customer_name" className="form-control" />
+                    <input onChange={this.handleCustomerNameChange} placeholder="Customer Name" required type="text" value ={this.state.customer_name} name="customer_name" id="customer_name" className="form-control" />
                     <label htmlFor="customer_name">Customer Name</label>
                   </div>
                   <div className="form-floating mb-3">
-                    <input onChange={this.handleReasonChange} placeholder="Reason" required type="text" name="reason" id="reason" className="form-control" />
+                    <input onChange={this.handleReasonChange} placeholder="Reason" required type="text" value ={this.state.reason} name="reason" id="reason" className="form-control" />
                     <label htmlFor="reason">Reason</label>
                   </div>
                   <div className="form-floating mb-3">
-                    <input onChange={this.handleDateChange} placeholder="Date" required type="text" name="date" id="date" className="form-control" />
+                    <input onChange={this.handleDateChange} placeholder="Date" required type="text" value ={this.state.date} name="date" id="date" className="form-control" />
                     <label htmlFor="date">Date</label>
                   </div>
                   <div className="form-floating mb-3">
-                    <input onChange={this.handleTimeChange} placeholder="Time" required type="text" name="time" id="time" className="form-control" />
+                    <input onChange={this.handleTimeChange} placeholder="Time" required type="text" value ={this.state.time} name="time" id="time" className="form-control" />
                     <label htmlFor="time">Time</label>
                   </div>
                   <div className="mb-3">

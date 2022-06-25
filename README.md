@@ -2,10 +2,12 @@
 
 Team:
 
-* Caleb - Service
-* Mark - Sales
+* Mark Esposito - Service
+* Caleb Rodriquez - Sales
 
 ## Design
+
+Please view the design drawing - project-beta/Project Beta Design.png
 
 ## Service microservice
 

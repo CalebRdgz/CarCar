@@ -6,11 +6,11 @@ export default function ManufacturersList({manufacturers}) {
             <h1>All Manufacturers</h1>
                 <div className="container-fluid">
                     <table className="table table-striped table-hover">
-                        <thread>
+                        <thead>
                             <tr>
                                 <th>Manufacturer</th>
                             </tr>
-                        </thread>
+                        </thead>
                         <tbody>
                             {manufacturers && manufacturers.map(manufacturer => {
                                 return (
